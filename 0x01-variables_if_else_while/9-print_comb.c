@@ -11,16 +11,16 @@ int main(void)
 
 	for (a = '0'; a <= '9'; a++)
 	{
-		putchar(a);
-		putchar(', ');
+		putchar(a, ',');
+		putchar(' ');
 	}
 
 	for (b = '0'; b <= '9'; b++)
 	{
 		for (c = '0'; c <= '9'; c++)
 		{
-			putchar(b, c);
-			putchar(', ');
+			putchar(b, c, ',');
+			putchar(' ');
 		}
 	}
 	return (0);
