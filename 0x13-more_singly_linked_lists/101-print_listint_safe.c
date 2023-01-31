@@ -1,9 +1,6 @@
 #include <stdio.h>
 #include "lists.h"
 
-size_t looped_listint_len(const listint_t *head);
-size_t print_listint_safe(const listint_t *head);
-
 /**
  * print_listint_safe - a function that prints a listint_t linked list.
  * @head: pointer to listint_t
@@ -11,39 +8,25 @@ size_t print_listint_safe(const listint_t *head);
  */
 size_t print_listint_safe(const listint_t *head)
 {
-	const listint_t *tortoise, *hare;
-	size_t nodes = 1;
+	size_t nodes = 0;
+	const listint_t *one = head, *two = head;
 
-	if (head == NULL || head->next == NULL)
-		return (0);
+	if (head == NULL)
+		exit(98);
 
-	tortoise = head->next;
-	hare = (head->next)->next;
-
-	while (hare)
+	while (one && two && two->next && head)
 	{
-		if (tortoise == hare)
+		one = one->next;
+		two = two->next->next;
+		if (one == two)
 		{
-			tortoise = head;
-			while (tortoise != hare)
-			{
-				nodes++;
-				tortoise = tortoise->next;
-			}
-
-			tortoise = tortoise->next;
-			while (tortoise != hare)
-			{
-				nodes++;
-				tortoise = tortoise->next;
-			}
-
-			return (nodes);
+			printf("-> [%p] %d\n", (void *)head, head->n);
+			exit(98);
 		}
-
-		tortoise = tortoise->next;
-		hare = (hare->next)->next;
+		printf("[%p] %d\n", (void *)head, head->n);
+		head = head->next;
+		nodes++;
 	}
-
-	return (0);
+	head = NULL;
+	return (nodes);
 }
